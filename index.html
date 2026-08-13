@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Issam — Web Designer Portfolio">
+  <title>Issam | Web Designer</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --bg: #08090c;
+  --card: #111318;
+  --text: #f4f5f7;
+  --muted: #9da3af;
+  --line: #242832;
+  --accent: #7c5cff;
+  --accent2: #a78bfa;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: Inter, system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+a { color: inherit; text-decoration: none; }
+
+.nav {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  width: 100%;
+  height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 7%;
+  background: rgba(8, 9, 12, .78);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+
+.logo {
+  font-size: 30px;
+  font-weight: 800;
+}
+.logo span, .eyebrow, h1 span, h2 span { color: var(--accent2); }
+
+.nav nav { display: flex; gap: 28px; }
+.nav nav a { color: var(--muted); font-size: 14px; transition: .25s; }
+.nav nav a:hover { color: var(--text); }
+
+.menu {
+  display: none;
+  background: none;
+  border: 0;
+  color: var(--text);
+  font-size: 25px;
+}
+
+.hero {
+  min-height: 100vh;
+  max-width: 1200px;
+  margin: auto;
+  padding: 150px 6% 90px;
+  display: grid;
+  grid-template-columns: 1.15fr .85fr;
+  gap: 70px;
+  align-items: center;
+}
+
+.eyebrow {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  margin-bottom: 18px;
+}
+
+h1 {
+  font-size: clamp(55px, 8vw, 92px);
+  line-height: .98;
+  letter-spacing: -5px;
+  margin-bottom: 24px;
+}
+
+.hero h2 {
+  max-width: 720px;
+  font-size: clamp(24px, 3vw, 38px);
+  line-height: 1.2;
+  letter-spacing: -1.5px;
+}
+
+.intro {
+  max-width: 590px;
+  color: var(--muted);
+  margin-top: 20px;
+  font-size: 17px;
+}
+
+.buttons { display: flex; gap: 12px; margin-top: 30px; flex-wrap: wrap; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 13px 22px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 14px;
+  transition: transform .2s, opacity .2s;
+}
+.btn:hover { transform: translateY(-2px); }
+.primary { background: var(--accent); color: white; }
+.secondary { border: 1px solid var(--line); }
+.big { padding: 16px 26px; margin-top: 22px; }
+
+.hero-card {
+  position: relative;
+  min-height: 390px;
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  overflow: hidden;
+  background: radial-gradient(circle at 60% 30%, rgba(124,92,255,.28), transparent 45%), var(--card);
+  display: grid;
+  place-items: center;
+}
+
+.glow {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: var(--accent);
+  filter: blur(80px);
+  opacity: .35;
+}
+
+.card-content {
+  position: relative;
+  width: 72%;
+  display: grid;
+  grid-template-columns: 45px 1fr;
+  gap: 20px 16px;
+  align-items: center;
+}
+.card-content span { color: var(--muted); font-size: 12px; }
+.card-content strong { font-size: 28px; }
+
+.section {
+  max-width: 1100px;
+  margin: auto;
+  padding: 110px 6%;
+}
+
+.section > h2, .contact h2 {
+  font-size: clamp(38px, 5vw, 62px);
+  line-height: 1.05;
+  letter-spacing: -3px;
+}
+
+.about-grid {
+  margin-top: 45px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 70px;
+}
+.about-grid > p { color: var(--muted); font-size: 18px; }
+
+.skills { display: grid; gap: 0; }
+.skills div {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+.skills span { color: var(--muted); font-size: 13px; }
+
+.projects {
+  margin-top: 45px;
+  display: grid;
+  gap: 12px;
+}
+
+.project {
+  padding: 30px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: linear-gradient(120deg, rgba(255,255,255,.025), transparent);
+  display: grid;
+  grid-template-columns: 70px 1fr;
+  gap: 20px;
+  transition: .25s;
+}
+.project:hover { border-color: rgba(167,139,250,.5); transform: translateY(-3px); }
+.project-number { color: var(--accent2); font-weight: 800; }
+.project h3 { font-size: 24px; margin-bottom: 6px; }
+.project p { color: var(--muted); margin-bottom: 14px; }
+.project a { color: var(--accent2); font-weight: 700; font-size: 14px; }
+
+.contact {
+  max-width: 1100px;
+  margin: 80px auto 100px;
+  padding: 70px 6%;
+  text-align: center;
+  border: 1px solid var(--line);
+  border-radius: 26px;
+  background: radial-gradient(circle at 50% 0%, rgba(124,92,255,.18), transparent 50%);
+}
+.contact h2 { max-width: 700px; margin: auto; }
+.contact p:not(.eyebrow) { color: var(--muted); margin-top: 12px; }
+
+footer {
+  border-top: 1px solid var(--line);
+  padding: 28px 7%;
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+@media (max-width: 760px) {
+  .nav { padding: 0 5%; }
+  .menu { display: block; }
+  .nav nav {
+    display: none;
+    position: absolute;
+    top: 76px;
+    left: 0;
+    right: 0;
+    padding: 20px 5%;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    flex-direction: column;
+    gap: 18px;
+  }
+  .nav nav.open { display: flex; }
+  .hero { grid-template-columns: 1fr; padding-top: 125px; }
+  .hero-card { min-height: 280px; }
+  .about-grid { grid-template-columns: 1fr; gap: 35px; }
+  .section { padding-top: 80px; }
+  .project { grid-template-columns: 45px 1fr; padding: 24px; }
+  footer { flex-direction: column; gap: 8px; }
+}
+
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <a class="logo" href="#home">I<span>.</span></a>
+    <button class="menu" aria-label="Open menu">☰</button>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="hero-text">
+        <p class="eyebrow">WEB DESIGNER</p>
+        <h1>Hi, I'm <span>Issam</span>.</h1>
+        <h2>I create modern websites that look great and feel simple to use.</h2>
+        <p class="intro">
+          I'm a web designer focused on clean, responsive and attractive digital experiences.
+        </p>
+        <div class="buttons">
+          <a class="btn primary" href="#projects">View My Work</a>
+          <a class="btn secondary" href="https://wa.me/212713012517" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="glow"></div>
+        <div class="card-content">
+          <span>01</span>
+          <strong>Creative</strong>
+          <span>02</span>
+          <strong>Responsive</strong>
+          <span>03</span>
+          <strong>Modern</strong>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <p class="eyebrow">ABOUT ME</p>
+      <h2>Designing websites with <span>purpose.</span></h2>
+      <div class="about-grid">
+        <p>
+          I'm Issam, a web designer passionate about creating modern and engaging websites.
+          I care about clean layouts, good user experience and designs that work smoothly
+          on both phones and computers.
+        </p>
+        <div class="skills">
+          <div><b>Web Design</b><span>UI & Visual Design</span></div>
+          <div><b>Responsive Design</b><span>Mobile & Desktop</span></div>
+          <div><b>Creative Thinking</b><span>Modern Interfaces</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+      <p class="eyebrow">MY WORK</p>
+      <h2>Selected <span>projects.</span></h2>
+      <div class="projects">
+        <!-- PROJECT 1: Replace the href with your project URL -->
+        <article class="project">
+          <div class="project-number">01</div>
+          <div>
+            <h3>Project One</h3>
+            <p>Add a short description of your first project here.</p>
+            <a href="https://bolhqy.github.io/habit-trakert/" target="_blank" rel="noopener">View Project ↗</a>
+          </div>
+        </article>
+
+        <!-- PROJECT 2: Replace the href with your project URL -->
+        <article class="project">
+          <div class="project-number">02</div>
+          <div>
+            <h3>Project Two</h3>
+            <p>Add a short description of your second project here.</p>
+            <a href="https://bolhqy.github.io/height-grhowte/" target="_blank" rel="noopener">View Project ↗</a>
+          </div>
+        </article>
+
+        <!-- PROJECT 3: Replace the href with your project URL -->
+        <article class="project">
+          <div class="project-number">03</div>
+          <div>
+            <h3>Project Three</h3>
+            <p>Add a short description of your third project here.</p>
+            <a href="https://iellmabroki-collab.github.io/test/?fbclid=PAb21jcATqwxJwZG9mAmV4dG4DYWVtAjExAHNydGMGYXBwX2lkDzU2NzA2NzM0MzM1MjQyNwABp2-ADYOrHL59QvXZ7aDymVMRjQwPWs8Bf3cE4olhEZlZseakAv2y0sX5pqOp_aem_5VQ0XWS-EHttXFGv9CtgqA" target="_blank" rel="noopener">View Project ↗</a>
+          </div>
+        </article>
+
+        <!-- PROJECT 4: Duplicate this card if you need more projects -->
+        <article class="project">
+          <div class="project-number">04</div>
+          <div>
+            <h3>Project Four</h3>
+            <p>Add a short description of another project here.</p>
+            <a href="https://bolhqy.github.io/Aoxel/" target="_blank" rel="noopener">View Project ↗</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <p class="eyebrow">CONTACT</p>
+      <h2>Have a project in mind?</h2>
+      <p>Let's talk about your next website.</p>
+      <a class="btn primary big" href="https://wa.me/212713012517" target="_blank" rel="noopener">
+        Chat on WhatsApp →
+      </a>
+    </section>
+  </main>
+
+  <footer>
+    <span>© 2026 Issam</span>
+    <span>Web Designer</span>
+  </footer>
+  <script>
+const menu = document.querySelector(".menu");
+const nav = document.querySelector(".nav nav");
+
+menu.addEventListener("click", () => {
+  nav.classList.toggle("open");
+});
+
+document.querySelectorAll(".nav nav a").forEach(link => {
+  link.addEventListener("click", () => nav.classList.remove("open"));
+});
+
+  </script>
+</body>
+</html>
